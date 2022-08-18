@@ -1,0 +1,5 @@
+msgid "plugins.generic.specialIssueTOC.name"
+msgstr "Special Issue TOC"
+
+msgid "plugins.generic.specialIssueTOC.description"
+msgstr "With this plugin one can add articles already published in another issue to the TOC of a special issue."
