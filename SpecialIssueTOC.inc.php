@@ -60,6 +60,10 @@ class SpecialIssueTOCPlugin extends GenericPlugin {
 
     // Get all the articles with the necessary subject
     $articles = $this->getMyIssueArticles('v'.$vol.'i'.$nr.'n');
+
+    if (count($articles) == 0) {
+      return false;
+    }
     
     // header for article list
     $text_block = '<div class="section">';
@@ -83,7 +87,6 @@ class SpecialIssueTOCPlugin extends GenericPlugin {
   }
 
   private function getMyIssueArticles($searchString) {
-//    $listArticles = array();
     $specialIssueDAO = new SpecialIssueDAO();
     $myIssueArticles = $specialIssueDAO->getMyIssueArticles($searchString.'%');
     return $myIssueArticles;
@@ -104,8 +107,14 @@ class SpecialIssueTOCPlugin extends GenericPlugin {
   private function getInfoBlock($publication, $baseUrl) {
     $title_array = $publication->getData('title');   // Extracting the title
     $title = $title_array['en_US'];
+
+    $subtitle_array = $publication->getData('subtitle');   // Extracting the subtitle
+    $subtitle = $subtitle_array['en_US'];
+    $prefix_array = $publication->getData('prefix');   // Extracting the prefix of the title
+    $prefix = $prefix_array['en_US'];
+    if ($prefix) { $title = $prefix." ".$title; }
+
     $submID = $publication->getData('submissionId');   // Extracting the submission ID
-    $publID = $publication->getData('id');             // Extracting the publication ID // WRONG!
     $publID = $this->getPublicationId($publication);             // Extracting the publication ID 
     $authors_string = $this->getAuthorsString($publication);
 
@@ -114,6 +123,10 @@ class SpecialIssueTOCPlugin extends GenericPlugin {
     $info .= '    <h3 class="title">';
     $info .= '      <a id="article-'.$submID.'"'; 
     $info .= '        href="'.$baseUrl.'/'.$submID.'">'.$title;
+
+    if ($subtitle) { 
+      $info .= '<span class="subtitle">'.$subtitle.'</span>';
+    }
     $info .= '      </a>';
     $info .= '    </h3>';
 
@@ -148,6 +161,9 @@ class SpecialIssueTOCPlugin extends GenericPlugin {
   }
 
   private function wrapInJavaScript($text_block) {
+    $pattern = "/'/i";
+    $text_block = preg_replace($pattern, "\'", $text_block);
+//    echo 'TEXT_BLOCK: '.$text_block;
     $js = '<script>
              document.addEventListener("DOMContentLoaded", function(){
                const collection = document.getElementsByClassName("sections");
