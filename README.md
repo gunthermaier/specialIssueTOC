@@ -14,7 +14,8 @@ To link aricles already published to the special issue Volume 9 Number 3, you ha
 The plugin searches for those subject entries, gets the corresponding metadata (title, authors, link), and places them after any already existing entries. This last step is done via a Javascript event listener.
 
 The left part of the following picture shows the issue page without the plugin, the right part witth the plugin. Note the aricles-section and the two articles in the right part. 
-<img src="https://github.com/gunthermaier/specialIssueTOC/blob/ac0e2fd559c273d19e10865596b5cceb114619da/specialIssueTOC.png">
+
+<img src="specialIssueTOC.png">
 
 ## How to use this plugin
 
