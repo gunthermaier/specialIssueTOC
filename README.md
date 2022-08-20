@@ -20,14 +20,14 @@ The left part of the following picture shows the issue page without the plugin, 
 ## How to use this plugin
 
 To use the plugin, take the following steps:
-1. download the file specialIssueTOC.tar.gz and upload it as a new plugin to your OJS (you need to have administrator rights to do that). The plugin will show up among the Generic Plugins. 
+1. download the file **specialIssueTOC.tar.gz** and upload it as a new plugin to your OJS (you need to have administrator rights to do that). The plugin will show up among the Generic Plugins. 
 2. Activate the plugin. 
 3. Find volume and number for the issue where you want the articles to show up. Make sure, this issue has a description.
-4. Add subjects with the required format.
+4. Add subjects with the required format to all the aricles you want to add to the TOC.
 
 ## How to improve this plugin
 
-So far, the plugin was only tested on my test installation of OJS (Version 3.3.0.11), not on a management version. This test will be done very soon.
+The plugin was tested on my test installation of OJS (Version 3.3.0.11) and the test installation of WU (Version 3.3.0.8). It is installed and running on the  management version of WU which hoss REGION (https://region.ersa.org).
 
 The plugin probably shows my limited knowledge of PHP and of the structure of OJS. Probably, the database search can be streamlines and improved. The current version is the result of myself searching around in the database to find a connection between a subject entry and a submissionID. I then hardcoded this query into the plugin. This should be reviewed and probably improved. 
 
