@@ -2,18 +2,18 @@
 A plugin for OJS (Open Journals System) that allows one to add articles published in another issue to the TOC of an issue
 
 ## Why this plugin?
-I created this plugin because in our journal REGION (https://region.ersa.org) we publish aricles as soon as hey are ready. When the article is for a special issue, i will first be published in a regular issue and then repackaged into the special issue when all its articles are ready. This implies that on the page of the special issue in OJS the articles (already published) do **not** show up. This plugin is supposed to resolve that issue.
+I created this plugin because in our journal REGION (https://region.ersa.org) we publish aricles as soon as they are ready. When the article is for a special issue, it will first be published in a regular issue and then repackaged into the special issue when all its articles are ready. This implies that on the page of the special issue in OJS the articles (already published) do **not** show up. This plugin is supposed to resolve that issue.
 
 ## How this plugin works
 When acive, the plugin is triggered on every issue and article page. Since in our case, only special issues have a description, the plugin checks for that and exits when no description exists (this should be adjusted later).
 
 Then, the plugin gets volume and number for the currenly displayed issue. From that information, it creates a search string of the form "v[x]i[y]n", where [x] is the volume number and [y] is the number number. For example, for Volume 9 Number 3, the search string will be "v9i3n".
 
-To link aricles already published to the special issue Volume 9 Number 3, you have to add a subject code to each of these articles. You may have to activate Subject in OJS (Workflow - Submission - Metadata). The subject entries have the above mentioned form plus a sumber, which determines the ordering of the aricles. The subject "v9i3n01" will mark the first, "v9i3n02" the second article in the table of contents. Of course, you can drop the leading zero when you have less than 10 articles to display.
+To link aricles already published to the special issue Volume 9 Number 3, you have to add a subject code to each of these articles. You may have to activate Subject in OJS (Workflow - Submission - Metadata). The subject entries have the above mentioned form plus a number, which determines the ordering of the aricles. The subject "v9i3n01" will mark the first, "v9i3n02" the second article in the table of contents. Of course, you can drop the leading zero when you have less than 10 articles to display.
 
 The plugin searches for those subject entries, gets the corresponding metadata (title, authors, link), and places them after any already existing entries. This last step is done via a Javascript event listener.
 
-The left part of the following picture shows the issue page without the plugin, the right part witth the plugin. Note the aricles-section and the two articles in the right part. 
+The left part of the following picture shows the issue page without the plugin, the right part with the plugin. Note the aricles-section and the two articles in the right part. 
 
 <img src="specialIssueTOC.png">
 
@@ -27,8 +27,8 @@ To use the plugin, take the following steps:
 
 ## How to improve this plugin
 
-The plugin was tested on my test installation of OJS (Version 3.3.0.11) and the test installation of WU (Version 3.3.0.8). It is installed and running on the  management version of WU which hoss REGION (https://region.ersa.org).
+The plugin was tested on my test installation of OJS (Version 3.3.0.11) and the test installation of WU (Version 3.3.0.8). It is installed and running on the  management version of WU which hosts REGION (https://region.ersa.org).
 
 The plugin probably shows my limited knowledge of PHP and of the structure of OJS. Probably, the database search can be streamlines and improved. The current version is the result of myself searching around in the database to find a connection between a subject entry and a submissionID. I then hardcoded this query into the plugin. This should be reviewed and probably improved. 
 
-Also, the plugin assumes that it should process only issues witth a description. This should be generalized and the user should be given the opportunity to change this.
+Also, the plugin assumes that it should process only issues with a description. This should be generalized and the user should be given the opportunity to change this.
